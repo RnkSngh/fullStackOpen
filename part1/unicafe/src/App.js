@@ -76,6 +76,7 @@ const App = (props) => {
     })
   }
 
+  
   const addBad = () => {
     setBad( bad + 1 );
     setTotals({
@@ -94,3 +95,5 @@ const App = (props) => {
 }
 
 export default App
+
+functional
