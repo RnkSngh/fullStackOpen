@@ -1,15 +1,9 @@
 import axios from "axios"
-const baseUrl = "http://localhost:3001/notes";
+const baseUrl = "/api/notes";
 
 const getAll = () => {
-    const nonExisting = {
-        id: 1000, 
-        content: 'done',
-        date: '2021',
-        important: true
-    }
     return axios.get(baseUrl)
-    .then(response => response.data.concat(nonExisting))
+    .then(response => response.data)
 }
 
 const create = newObject =>{

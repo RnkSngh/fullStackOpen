@@ -1,11 +1,10 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3001/persons";
+const baseUrl = "/api/persons";
 
 const getAll = ()=>{
-    const fakePerson = { name:"fakey", number:"brownie"}
     return (
         axios.get(baseUrl)
-        .then( response => response.data.concat(fakePerson))
+        .then( response => response.data)
 )};
 
 const getPerson = (id) => {
