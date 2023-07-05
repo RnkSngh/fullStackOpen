@@ -1,0 +1,25 @@
+### Get all 
+GET http://localhost:3001/api/notes/
+
+####
+GET http://localhost:3001/api/notes/1
+
+###
+POST http://localhost:3001/api/notes/ 
+content-type: application/json
+
+{
+    "content": "adsfkajsl",
+    "duration":"100"
+}
+
+
+### 
+DELETE http://localhost:3001/api/notes/1
+
+### 
+GEt http://localhost:3001/api/unknown/1
+
+
+
+
