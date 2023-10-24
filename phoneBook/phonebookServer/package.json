@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build:ui": " rm -rf build && cd ../phonebookFrontend && yarn run build && cp -r build ../phonebookServer",
+    "deploy": "fly deploy",
+    "deploy:full": "yarn run build:ui && yarn run deploy"
   },
   "author": "",
   "license": "ISC",

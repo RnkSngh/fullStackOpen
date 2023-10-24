@@ -6,14 +6,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build:ui": "rm -rf build && cd ../notesFrontend && yarn run build && cp -r build ../notesServer",
+    "deploy":  "fly deploy",
+    "deploy:full" : "yarn run build:ui && yarn deploy",
+    "logs:prod" : "fly logs"
+
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "static": "^2.0.0"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.4.10",
     "nodemon": "^2.0.22"
   }
 }

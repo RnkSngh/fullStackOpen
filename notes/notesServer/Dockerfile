@@ -4,28 +4,28 @@
 ARG NODE_VERSION=16.18.0
 FROM node:${NODE_VERSION}-slim as base
 
-LABEL fly_launch_runtime="NodeJS"
+LABEL fly_launch_runtime="Node.js"
 
-# NodeJS app lives here
+# Node.js app lives here
 WORKDIR /app
 
 # Set production environment
-ENV NODE_ENV=production
+ENV NODE_ENV="production"
+
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
 # Install packages needed to build node modules
 RUN apt-get update -qq && \
-    apt-get install -y python3 pkg-config build-essential 
+    apt-get install -y build-essential pkg-config python
 
 # Install node modules
-COPY --link package.json yarn.lock .
-RUN rm -rf node_modules && yarn install --frozen-lockfile
+COPY --link package-lock.json package.json ./
+RUN rm -rf node_modules && yarn install --frozen-lockfile 
 
 # Copy application code
 COPY --link . .
-
 
 
 # Final stage for app image
@@ -35,4 +35,5 @@ FROM base
 COPY --from=build /app /app
 
 # Start the server by default, this can be overwritten at runtime
+EXPOSE 3000
 CMD [ "yarn", "run", "start" ]

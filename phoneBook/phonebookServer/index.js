@@ -7,6 +7,7 @@ require('dotenv').config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static("build"))
 
 morgan.token('body', function (req, res) { return JSON.stringify(req.body) })
 app.use(morgan(':body :method :url :status :res[content-length] - :response-time ms'))
@@ -99,8 +100,9 @@ const unknownEndpoint = (request, response) => {
 
 
 const PORT = process.env.PORT || 3001;
+
 app.use(unknownEndpoint);
 app.listen(PORT, () => {
-    console.log(`listening on port ${PORT}`)
+    console.log(`Server running on port ${PORT}`)
 })
 
