@@ -1,0 +1,47 @@
+### Get all 
+GET http://localhost:3001/api/notes/
+
+####
+GET http://localhost:3001/api/notes/65380f5d9dbe169ee9326250
+
+### Notes not found (404) 
+GET http://localhost:3001/api/notes/75380f5d9dbe169ee9326250
+
+
+### Note id not formatted correctly (400) 
+GET http://localhost:3001/api/notes/1241
+
+
+###
+POST http://localhost:3001/api/notes/ 
+content-type: application/json
+
+{
+    "content": "adsfkajsl",
+    "duration":"100"
+}
+
+
+###  Delete note
+DELETE http://localhost:3001/api/notes/653810c0c526eb57d660eae6
+
+### Put new importance 
+
+PUT http://localhost:3001/api/notes/653810ca52b695dad3eab28b
+content-type: application/json
+
+{
+    "content": "note 3 bleh",
+    "important":true 
+}
+
+
+### PUT in bad 
+PUT http://localhost:3001/api/notes/7
+content-type: application/json
+
+{
+    "content": "note 3 bleh",
+    "important":true 
+}
+

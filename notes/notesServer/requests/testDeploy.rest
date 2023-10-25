@@ -1,0 +1,25 @@
+### Get all 
+GET https://rough-grass-4415.fly.dev/api/notes/
+
+####
+GET https://rough-grass-4415.fly.dev/api/notes/1
+
+###
+POST https://rough-grass-4415.fly.dev/api/notes/ 
+content-type: application/json
+
+{
+    "content": "adsfkajsl",
+    "duration":"100"
+}
+
+
+### 
+DELETE https://rough-grass-4415.fly.dev/api/notes/1
+
+### 
+GET https://rough-grass-4415.fly.dev/api/unknown/1
+
+
+
+
