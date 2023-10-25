@@ -5,12 +5,21 @@ get http://localhost:3001/info/
 get http://localhost:3001/api/persons
 
 ### Get known person
-get http://localhost:3001/api/persons/1/
+get http://localhost:3001/api/persons/65383987209a38072b1542c3/
+
+### Get person that doesn't exist 
+get http://localhost:3001/api/persons/753813b549dee7b877bed97e/
+
+### Send request for malformatted id
+get http://localhost:3001/api/persons/753813b5/
+
 
 ### Test for phonebook that isn't present in persons 
 get http://localhost:3001/api/persons/10/
 
 ### Delete an entry that exists
+delete http://localhost:3001/api/persons/653978217b430a456b0fb2c5
+
 delete http://localhost:3001/api/persons/2/
 
 ### Delete an entry that doesn't exist 
@@ -21,8 +30,17 @@ post http://localhost:3001/api/persons/
 Content-Type: application/json
 
 {
-    "name": "alice",
-    "number" : "040-123456"
+    "name": "bobthra",
+    "number" : "123-123456"
+}
+
+### Add an entry for a phonebook
+put http://localhost:3001/api/persons/653976c77b430a456b0fb2b4
+Content-Type: application/json
+
+{
+    "name": "bobthra",
+    "number" : "123-123456"
 }
 
 ### Add an invalid entry for a phonebook

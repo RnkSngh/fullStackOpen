@@ -1,7 +1,10 @@
+
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 require('dotenv').config();
+
+const PhoneNumber = require("./models/phoneNumber")
 
 
 const app = express();
@@ -13,59 +16,45 @@ morgan.token('body', function (req, res) { return JSON.stringify(req.body) })
 app.use(morgan(':body :method :url :status :res[content-length] - :response-time ms'))
 
 
-let phoneBook = [
-    {
-        "id": 1,
-        "name": "Arto Hellas",
-        "number": "040-123456"
-    },
-    {
-        "id": 2,
-        "name": "Ada Lovelace",
-        "number": "39-44-5323523"
-    },
-    {
-        "id": 3,
-        "name": "Dan Abramov",
-        "number": "12-43-234345"
-    },
-    {
-        "id": 4,
-        "name": "Mary Poppendieck",
-        "number": "39-23-6423122"
-    }
-]
-
-const getNewId = () => {
-    const newEntry = Math.floor(Math.random() * 1e6);
-    return newEntry
-}
-
 app.get("/api/persons/", (request, response) => {
-    response.json(phoneBook)
+    PhoneNumber.find({}).then(result => { response.json(result) })
 });
 
-app.get("/api/persons/:id/", (req, res) => {
-    const id = Number(req.params.id)
-    phone = phoneBook.filter((phoneBookEntry) => {
-        return id === phoneBookEntry.id
+app.get("/api/persons/:id/", (req, res, next) => {
+    const id = req.params.id
+    PhoneNumber.findById(id).then(note => {
+        if (note) {
+            res.json(note)
+        }
+        else {
+            res.status(404).end()
+        }
+    }).catch(err => {
+        next(err)
     })
-    if (phone.length > 0) {
-        res.json(phone)
-    }
-    else {
-        res.status(404).end();
-    }
-})
-
-app.delete("/api/persons/:id", (req, res) => {
-    const id = Number(req.params.id)
-    phoneBook = phoneBook.filter(entry => entry.id != id)
-    res.status(204).end();
 
 })
 
-app.post("/api/persons/", (req, res) => {
+app.put(`/api/persons/:id/`, (request, response, next) => {
+    const body = request.body
+    const phoneNumber = {
+        name: body.name, number: body.number
+    }
+
+    PhoneNumber.findByIdAndUpdate(request.params.id, phoneNumber, { new: true })
+        .then(newPhoneNumber => { response.json(newPhoneNumber) })
+        .catch(err => { next(err) })
+
+})
+
+app.delete("/api/persons/:id", (request, response, next) => {
+    PhoneNumber.findByIdAndDelete(request.params.id)
+        .then(result => { response.status(204).end() })
+        .catch(err => { next(err) })
+
+})
+
+app.post("/api/persons/", (req, res, next) => {
     body = req.body;
     if (!body.name) {
         res.status(400).json({ error: `Missing name` })
@@ -73,35 +62,39 @@ app.post("/api/persons/", (req, res) => {
     if (!body.number) {
         res.status(400).json({ error: "Missing number" })
     }
-    if (phoneBook.filter(item => item.name === body.name).length > 0) {
-        res.status(400).json({ error: "Name already exists" })
-        return
-    }
-
-    const newPhoneBookEntry = {
-        id: getNewId(),
+    const newPhoneNumber = new PhoneNumber({
         name: req.body.name,
         number: req.body.number
-    }
+    })
 
-    phoneBook.push(newPhoneBookEntry)
-    res.json(newPhoneBookEntry)
-
+    newPhoneNumber.save()
+        .then(result => { res.json(result) })
+        .catch(err => { next(err) })
 })
 
-app.get("/info/", (req, res) => {
-    res.send(`Phonebook has info for ${phoneBook.length} people <br/> ${(new Date()).toUTCString()}`);
+app.get("/info/", (req, res, next) => {
+    PhoneNumber.count().then(count => {
+        res.send(`<br> Phonebook has info for ${count} people <br/> ${(new Date()).toUTCString()}`);
+    }).catch(err => { next(err) })
 })
 
 const unknownEndpoint = (request, response) => {
     response.status(404).send({ error: "Unknown endpoint" })
 }
 
-
+const errorHandler = (error, request, response, next) => {
+    if (error.name == "CastError") {
+        response.status(400).send({ error: "malformatted ID" })
+    }
+    next(error)
+}
 
 const PORT = process.env.PORT || 3001;
 
 app.use(unknownEndpoint);
+
+app.use(errorHandler);
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
