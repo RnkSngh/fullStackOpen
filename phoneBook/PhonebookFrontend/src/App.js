@@ -30,6 +30,9 @@ const App = () => {
           setNewNumber("")
         }
         )
+        .catch(error => {
+          handleErrorFunction(error.response.data.error)
+        })
     }
     else {
       const newPerson = { name: newName, number: newNumber }
@@ -43,6 +46,9 @@ const App = () => {
           setPersons(newPersons)
           setNewName("")
           setNewNumber("")
+        })
+        .catch(error => {
+          handleErrorFunction(error.response.data.error)
         })
 
     }
