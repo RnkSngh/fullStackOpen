@@ -10,7 +10,8 @@
     "build:ui": "rm -rf build && cd ../notesFrontend && yarn run build && cp -r build ../notesServer",
     "deploy": "fly deploy",
     "deploy:full": "yarn run build:ui && yarn deploy",
-    "logs:prod": "fly logs"
+    "logs:prod": "fly logs",
+    "lint": "eslint ."
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +25,12 @@
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.4.10",
+    "eslint": "^8.52.0",
     "nodemon": "^2.0.22"
+  },
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2,
+    "singleQuote": true,
   }
 }

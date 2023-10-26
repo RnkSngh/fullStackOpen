@@ -23,7 +23,7 @@ content-type: application/json
 
 
 ###  Delete note
-DELETE http://localhost:3001/api/notes/653810c0c526eb57d660eae6
+DELETE http://localhost:3001/api/notes/65394376149c92c76cf44dc8
 
 ### Put new importance 
 
