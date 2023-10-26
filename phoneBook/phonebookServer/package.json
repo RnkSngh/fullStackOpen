@@ -9,7 +9,8 @@
     "start": "nodemon index.js",
     "build:ui": " rm -rf build && cd ../phonebookFrontend && yarn run build && cp -r build ../phonebookServer",
     "deploy": "fly deploy",
-    "deploy:full": "yarn run build:ui && yarn run deploy"
+    "deploy:full": "yarn run build:ui && yarn run deploy",
+    "lint": "yarn eslint ."
   },
   "author": "",
   "license": "ISC",
@@ -20,5 +21,13 @@
     "mongoose": "^7.6.3",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.22"
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
   }
 }

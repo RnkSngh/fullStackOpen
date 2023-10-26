@@ -25,7 +25,7 @@ const addPerson = (personObj) => {
 const modifyPerson = (id, personObj) => {
     return (axios.put(`${baseUrl}/${id}`, personObj)).then(response => {
         return response.data
-    })
+    }).catch(err => {console.log("in handler")})
 }
 
 const deletePerson = (id) => {
@@ -34,7 +34,7 @@ const deletePerson = (id) => {
             .then(response => {
                 return response.data
             }
-            )
+        )
     )
 };
 export default { getAll, getPerson, addPerson, deletePerson, modifyPerson }

@@ -34,6 +34,15 @@ Content-Type: application/json
     "number" : "123-123456"
 }
 
+
+### Add an entry for a phonebook that fails regex  check
+post http://localhost:3001/api/persons/
+Content-Type: application/json
+
+{
+    "name": "bobthra",
+    "number" : "123123456"
+}
 ### Add an entry for a phonebook
 put http://localhost:3001/api/persons/653976c77b430a456b0fb2b4
 Content-Type: application/json
