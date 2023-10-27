@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 
-const DB_URI = Node.process.env.DB_URI
+const DB_URI = process.env.DB_URI
 
 if (!DB_URI) {
   console.log('Make sure URI is saved in .env')
-  Node.process.exit(1)
+  process.exit(1)
 }
 
 mongoose.set('strictQuery', false)

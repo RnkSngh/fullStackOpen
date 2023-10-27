@@ -3,7 +3,7 @@ const PhoneNumber = require('./models/phoneNumber')
 
 const mongoose = require('mongoose')
 
-if (Node.process.argv.length < 4) {
+if (process.argv.length < 4) {
   PhoneNumber.find({}).then((result) => {
     result.forEach((phoneNumber) => {
       console.log(phoneNumber)
@@ -12,8 +12,8 @@ if (Node.process.argv.length < 4) {
   })
 } else {
   const phoneNumber = new PhoneNumber({
-    person: Node.process.argv[2],
-    number: Node.process.argv[3],
+    person: process.argv[2],
+    number: process.argv[3],
   })
 
   phoneNumber.save().then(() => {

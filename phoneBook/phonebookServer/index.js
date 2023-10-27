@@ -106,7 +106,7 @@ const errorHandler = (error, request, response, next) => {
   next(error)
 }
 
-const PORT = Node.process.env.PORT || 3001
+const PORT = process.env.PORT || 3001
 
 app.use(unknownEndpoint)
 
