@@ -3,12 +3,13 @@ const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
+const { info, error } = require('./utils/logger')
 require('dotenv').config()
 
 const MONGODB_URI = process.env.MONGODB_URI
 
 if (!MONGODB_URI) {
-  console.log('MONGODB URI not set')
+  error('MONGODB URI not set')
   process.exit(1)
 }
 
@@ -24,10 +25,10 @@ const Blog = mongoose.model('Blog', blogSchema)
 mongoose
   .connect(MONGODB_URI)
   .then(() => {
-    console.log('connected to mongodb')
+    info('connected to mongodb')
   })
   .catch(() => {
-    console.log('can\'t connect to mongodb')
+    error(`can'${''}t connect to mongodb`)
   })
 
 app.use(cors())
@@ -51,8 +52,6 @@ app.get('/api/blogs', (request, response) => {
 })
 
 app.post('/api/blogs', (request, response) => {
-  console.log('api blog endpoint')
-  console.log('connecting to api', request.body)
   const blog = new Blog(request.body)
 
   blog
@@ -61,11 +60,11 @@ app.post('/api/blogs', (request, response) => {
       response.status(201).json(result)
     })
     .catch((err) => {
-      console.log('error connecting to db', err)
+      error('error connecting to db', err)
     })
 })
 
 const PORT = 3003
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+  info(`Server running on port ${PORT}`)
 })
