@@ -1,0 +1,16 @@
+### GET BLOGS 
+GET http://localhost:3003/api/info
+
+### GET BLOGS 
+GET http://localhost:3003/api/blogs
+
+### POST NEW BLOG 
+POST http://localhost:3003/api/blogs/
+content-type: application/json
+
+{
+  "title": "Blog 2",
+  "author": "Authoer blog4",
+  "url": "httpsBlog1123",
+  "likes": 100
+}
