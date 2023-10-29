@@ -1,8 +1,9 @@
 require('dotenv').config()
 
 const mongoose = require('mongoose')
+const config = require('./utils/config')
 
-const PASSWORD = process.env.DB_PASSWORD
+const PASSWORD = config.DB_PASSWORD
 
 if (!PASSWORD) {
   console.log('give password as argument')
