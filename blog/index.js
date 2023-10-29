@@ -3,10 +3,8 @@ const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
+const { PORT, MONGODB_URI } = require('./utils/config')
 const { info, error } = require('./utils/logger')
-require('dotenv').config()
-
-const MONGODB_URI = process.env.MONGODB_URI
 
 if (!MONGODB_URI) {
   error('MONGODB URI not set')
@@ -64,7 +62,6 @@ app.post('/api/blogs', (request, response) => {
     })
 })
 
-const PORT = 3003
 app.listen(PORT, () => {
   info(`Server running on port ${PORT}`)
 })
