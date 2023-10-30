@@ -1,1 +1,0 @@
-HEllo this is a simple phonebook webapp through following the fullstack open course
