@@ -13,15 +13,38 @@ GET http://localhost:3001/api/notes/75380f5d9dbe169ee9326250
 GET http://localhost:3001/api/notes/1241
 
 
+### User  
+GET http://localhost:3001/api/users
+
 ###
 POST http://localhost:3001/api/notes/ 
 content-type: application/json
 
 {
-    "content": "adsfkajsl",
-    "duration":"100"
+    "content": "newNote By User",
+    "important": true,
+    "userId": "6542b13a2f5ba5fb893abff7"
+
 }
 
+###
+POST http://localhost:3001/api/users/ 
+content-type: application/json
+
+{
+    "username": "root",
+    "name": "Superuser",
+    "password": "salainen"
+}
+
+###
+POST http://localhost:3001/api/login/
+content-type: application/json
+
+{
+    "username": "root",
+    "password": "salainen"
+}
 
 ###  Delete note
 DELETE http://localhost:3001/api/notes/65394376149c92c76cf44dc8

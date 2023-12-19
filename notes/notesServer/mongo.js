@@ -3,17 +3,14 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 const config = require('./utils/config')
 
-const PASSWORD = config.DB_PASSWORD
 
-if (!PASSWORD) {
+if (!config.TEST_MONGODB_URI) {
   console.log('give password as argument')
   process.exit(1)
 }
 
-const url = `mongodb+srv://ronk:${PASSWORD}@notesApp.3cvyfna.mongodb.net/noteApp?retryWrites=true&w=majority`
-
 mongoose.set('strictQuery', false)
-mongoose.connect(url)
+mongoose.connect(config.TEST_MONGODB_URI)
 
 const noteSchema = new mongoose.Schema({
   content: String,
