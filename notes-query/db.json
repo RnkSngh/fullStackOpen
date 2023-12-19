@@ -1,0 +1,14 @@
+{
+  "notes": [
+    {
+      "content":"II state changes are made with actions",
+      "id": 1,
+      "important": false
+    },
+    {
+      "content": "state changes are made with actions",
+      "important": false,
+      "id": 2
+    }
+  ]
+}
