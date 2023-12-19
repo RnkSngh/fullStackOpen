@@ -1,0 +1,129 @@
+### GET BLOGS 
+GET http://localhost:3001/api/info
+
+### GET BLOGS 
+GET http://localhost:3001/api/blogs
+
+
+### GET BLOGS 
+GET http://localhost:3001/api/blogs/65557296c3872d58c6c443c2
+
+
+### Get All Users
+GET http://localhost:3001/api/users/
+
+### Get single user 
+GET http://localhost:3001/api/users/65539c3ca1636f210557bf2d
+http://localhost:5173/user/api/users/65539c3ca1636f210557bf2d
+
+### POST NEW BLOG 
+
+POST http://localhost:3001/api/blogs/
+content-type: application/json
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjU3MzUyYTA2Y2Y2NjE5ZjliZjUyNiIsInVzZXJuYW1lIjoicm9ua21vbmsiLCJpYXQiOjE3MDExNDc0Nzd9.L6k8WGaxTxeJTnUI4WX1bofQjZyxdiDs_HmPX5qYwhA 
+
+{
+  "title": "Under Autho",
+  "author": "Req ",
+  "url": "adfasdf.under.auth.org",
+  "likes": "42"
+}
+
+### POST BLOGS/Comment
+POST http://localhost:3001/api/blogs/65539c3ca1636f210557bf2d/comments
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTM5YzNjYTE2MzZmMjEwNTU3YmYyZCIsInVzZXJuYW1lIjoicm9ua21vbmsiLCJpYXQiOjE3MDE2NjI1MDl9.IEkY0BJ1t1M7J6jf_fRQLjUGQkYFIEsnUXoMw--DVDQ
+
+{
+  "content" : "this is great blog 10/10 would recommend"
+}
+
+
+
+### NEW USER 
+POST http://localhost:3001/api/users/
+content-type: application/json
+
+{
+  "username": "ronkmonk",
+  "password": "123456",
+  "name": "Ronkie Ponkie"
+}
+
+
+### Invalid NEW USER 
+POST http://localhost:3001/api/users/
+content-type: application/json
+
+{
+  "username": "ronkmonk",
+  "password": "1",
+  "name": "Ronkie Ponkie"
+}
+
+### LOGIN 
+POST http://localhost:3001/api/login/
+content-type: application/json
+
+{
+  "username": "ronkmonk",
+  "password": "123456"
+}
+
+### Send like
+PUT http://localhost:3001/api/blogs/6555295325d6e95a2b508d19/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTM5YzNjYTE2MzZmMjEwNTU3YmYyZCIsInVzZXJuYW1lIjoicm9ua21vbmsiLCJpYXQiOjE3MDAwOTg1ODJ9.Pu07qlPTGmAB2Y8pW71Hyr0cSvclSXwIkqZt7q5WOoM 
+
+{
+    "title": "Blog 1",
+    "author": "Authoer blog1",
+    "url": "httpsBlog blog1",
+    "likes": 13,
+    "creator":  "65539c3ca1636f210557bf2d",
+    "id": "6555295325d6e95a2b508d19"
+}
+
+
+### Delete like
+Delete http://localhost:3001/api/blogs/6557b38c7a2212e8269c93ea
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTM5YzNjYTE2MzZmMjEwNTU3YmYyZCIsInVzZXJuYW1lIjoicm9ua21vbmsiLCJpYXQiOjE3MDAwOTg1ODJ9.Pu07qlPTGmAB2Y8pW71Hyr0cSvclSXwIkqZt7q5WOoM 
+
+### (TEST) delete all
+POST http://localhost:3001/api/tests/reset
+
+### (Test) Add user
+POST http://localhost:3001/api/users/
+content-type: application/json
+
+{
+  "username": "ronkmonk",
+  "password": "123456",
+  "name": "Ronkie Ponkie"
+}
+
+
+
+### (TEST) Login
+POST http://localhost:3001/api/login/
+content-type: application/json
+
+{
+  "username": "ronkmonk",
+  "password": "123456"
+}
+
+
+### (test) POST NEW BLOG 
+POST http://localhost:3001/api/blogs/
+content-type: application/json
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjU3MzUyYTA2Y2Y2NjE5ZjliZjUyNiIsInVzZXJuYW1lIjoicm9ua21vbmsiLCJpYXQiOjE3MDExNDc0Nzd9.L6k8WGaxTxeJTnUI4WX1bofQjZyxdiDs_HmPX5qYwhA 
+
+{
+  "title": "Under Autho",
+  "author": "Req ",
+  "url": "adfasdf.under.auth.org",
+  "likes": "42"
+}
+
+

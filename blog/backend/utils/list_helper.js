@@ -14,9 +14,7 @@ const favoriteBlog = (blogs) => {
   }
   return blogs.reduce(
     (favoriteBlog, item) => {
-      console.log('favorite blog', favoriteBlog, item)
       if (favoriteBlog.likes === 0 || favoriteBlog.likes < item.likes) {
-        console.log()
         return { title: item.title, author: item.author, likes: item.likes }
       } else {
         return favoriteBlog
