@@ -1,0 +1,15 @@
+
+
+
+GET http://localhost:3001/api/diaries
+### 
+POST http://localhost:3001/api/diaries
+Content-Type: application/json
+
+{
+    "date" : "1231",
+    "weather" : "cloudy",
+    "visibility" : "great",
+    "comment" : "comment"
+
+}
